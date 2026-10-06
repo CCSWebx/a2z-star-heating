@@ -1,0 +1,14 @@
+{
+  "name": "a2z-star-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static single-page website for A2Z Star Heating & Plumbing Solutions (demo, not yet live).",
+  "scripts": {
+    "serve": "node scripts/serve.js",
+    "check": "node scripts/check.js",
+    "test": "node tests/smoke.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.0"
+  }
+}
