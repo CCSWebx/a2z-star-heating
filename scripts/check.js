@@ -63,6 +63,10 @@ const text = html.replace(/<script[\s\S]*?<\/script>/g, '');
 const banned = [/24\s*\/\s*7/i, /24[- ]hour/i, /emergency/i, /same[- ]day/i, /guarantee/i, /warrant(y|ies)/i, /gas safe/i,
   /years? of experience/i, /fully insured/i, /free (quote|estimate)/i, /aggregateRating/i, /application\/ld\+json/i, /£\s*\d/, /\d+\s*%\s*off/i];
 for (const re of banned) must(!re.test(text), `Unverified claim pattern found: ${re}`);
+must((html.match(/<div class="steps">[\s\S]*?<\/div>/) || [''])[0].split('<article>').length === 4, 'How it works must have exactly 3 steps');
+must((html.match(/<div class="why-points">[\s\S]*?<\/section>/) || [''])[0].split('<article>').length === 4, 'Why A2Z must have exactly 3 points');
+must(!/concept form below|does not transmit or store|One number\./i.test(html), 'Removed repetitive/outdated copy has returned');
+must((html.match(/enquiries are not sent/gi) || []).length === 1, 'Demo-form notice must appear once in the form');
 must(/5\.0<span>\/ 5<\/span>/.test(html) && /554 reviews on <b>MyBuilder<\/b>/.test(html), 'MyBuilder rating/count markup changed');
 
 // JavaScript: syntax, strict mode, and privacy rules for the demo form
